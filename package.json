@@ -1,0 +1,22 @@
+{
+  "name": "fbdemo",
+  "version": "0.0.1",
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
+    "firebase": "^3.9.0",
+    "firebase-admin": "^4.2.1",
+    "node-yaml": "^3.0.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1"
+  },
+  "scripts": {
+    "start": "babel-node server.js"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "aws-database",
+  "version": "0.0.1",
+  "description": "Alien AWS Database.",
+  "license": "UNLICENSED",
+  "repository": "https://github.com/alienlabs/experimental/tree/master/sub/aws_database",
+  "main": "index.js",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-jest": "^20.0.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "express": "^4.15.2",
+    "grunt": "^1.0.1",
+    "json-loader": "^0.5.4",
+    "regenerator-runtime": "^0.10.5",
+    "webpack": "^2.7.0",
+    "webpack-merge": "^4.1.0",
+    "webpack-node-externals": "^1.5.4",
+    "yaml-loader": "^0.4.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "lodash": "^4.17.4",
+    "node-yaml": "^3.0.3"
+  },
+  "scripts": {
+    "test": "jest --silent"
+  }
+}

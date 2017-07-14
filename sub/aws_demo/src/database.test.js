@@ -6,9 +6,9 @@ import _ from 'lodash';
 
 // TODO(burdon): Create AWSDatabase (with DynamoDB, Lambda, and Elasticsearch).
 
-import { MemoryDatabase as Database } from './database';
+import { MemoryDatabase as Database } from './memory';
 
-test('Write then query store.', () => {
+test('Write then query store.', async () => {
 
   const data = [
     {
@@ -27,11 +27,27 @@ test('Write then query store.', () => {
 
   let db = new Database();
 
-  return db.insert(data).then(items => {
-    return db.query({ text: 'Alien' }).then(items => {
+  //
+  // Insert data.
+  //
 
-      // Expect 2 items to match.
-      expect(items).toHaveLength(2);
-    });
-  });
+  await db.insert(data);
+
+  {
+    let results = await db.query({ text: 'ALIEN' });
+    expect(results).toHaveLength(2);
+  }
+
+  //
+  // Update data and requery.
+  //
+
+  _.set(data, '[0].title', 'Bananas');
+
+  await db.insert(data);
+
+  {
+    let results = await db.query({ text: 'ALIEN' });
+    expect(results).toHaveLength(1);
+  }
 });

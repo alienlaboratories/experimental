@@ -56,6 +56,7 @@ class Index {
 
   static getTokens(text) {
     // TODO(burdon): Better tokenization.
+    // Strip non-word characters and split by spaces.
     return _.compact(text.toLowerCase().replace(/[\W]+/g, ' ').split(' '));
   }
 

@@ -50,4 +50,5 @@ test('Write then query store.', async () => {
     let results = await db.query({ text: 'ALIEN' });
     expect(results).toHaveLength(1);
   }
+
 });

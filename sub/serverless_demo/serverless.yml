@@ -1,41 +1,62 @@
-# Welcome to Serverless!
 #
-# This file is the main config file for your service.
-# It's very minimal at this point and uses default values.
-# You can always add more config options for more control.
-# We've included some commented out config examples here.
-# Just uncomment any of them to get that config option.
+# docs.serverless.com
+# TODO(burdon): Serverless offline plugin.
+# TODO(burdon): IAM roles for deploying lambda.
 #
-# For full config options, check the docs:
-#    docs.serverless.com
-#
-# Happy Coding!
 
-service: serverless_demo
+# TODO(burdon): Figure out (and remove us-east-2)
+
+#
+# Console:
+# https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions?display=list
+#
+
+service: demo
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
 
+custom:
+  webpack: "webpack.config.js"
+  dev:
+    apikey: "83CC572F-90DE-406F-ABFB-4C770C2381EB"
+
+plugins:
+  # Webpack
+  # https://www.npmjs.com/package/serverless-webpack
+  - "serverless-webpack"
+
 provider:
   name: aws
   runtime: nodejs6.10
 
-# you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
+  region: us-east-1                                           # N. Virginia
 
-# you can add statements to the Lambda function's IAM Role here
+  stage: dev
+
+  #
+  # Environment available
+  #
+  environment:
+    ALIEN_API_KEY: ${self:custom.${self:provider.stage}.apikey}
+
+#
+# IAM Role for Lambda.
+# Creates role on-the-fly and attaches to the function.
+# (Normally in AWS this would be in the Cloud Formation config).
+#
+
 #  iamRoleStatements:
 #    - Effect: "Allow"
 #      Action:
 #        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
+#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ] }
 #    - Effect: "Allow"
 #      Action:
 #        - "s3:PutObject"
 #      Resource:
-#        Fn::Join:
+#        Fn::Join:                                            # Join-string function to create ARN.
 #          - ""
 #          - - "arn:aws:s3:::"
 #            - "Ref" : "ServerlessDeploymentBucket"
@@ -57,6 +78,16 @@ provider:
 functions:
   hello:
     handler: handler.hello
+
+    # TODO(burdon): Expose as API Gateway.
+    # TODO(burdon): WARNING: "Could not list api-gateway event sources."
+    # Provides endpoint.
+    # GET - https://7u7jsipmfh.execute-api.us-east-1.amazonaws.com/dev/hello
+    # curl https://7u7jsipmfh.execute-api.us-east-1.amazonaws.com/dev/hello
+    events:
+      - http:
+          path: /hello
+          method: get
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

@@ -20,7 +20,7 @@ service: demo
 custom:
   webpack: "webpack.config.js"
   dev:
-    apikey: "83CC572F-90DE-406F-ABFB-4C770C2381EB"
+    webhook: "14E2FD50-F675-4ADA-B132-CEE9950D044A"
 
 plugins:
   # Webpack
@@ -39,7 +39,7 @@ provider:
   # Environment available
   #
   environment:
-    ALIEN_API_KEY: ${self:custom.${self:provider.stage}.apikey}
+    ALIEN_WEBHOOK: ${self:custom.${self:provider.stage}.webhook}
 
 #
 # IAM Role for Lambda.
@@ -82,12 +82,12 @@ functions:
     # TODO(burdon): Expose as API Gateway.
     # TODO(burdon): WARNING: "Could not list api-gateway event sources."
     # Provides endpoint.
-    # GET - https://7u7jsipmfh.execute-api.us-east-1.amazonaws.com/dev/hello
-    # curl https://7u7jsipmfh.execute-api.us-east-1.amazonaws.com/dev/hello
+    # POST - https://7u7jsipmfh.execute-api.us-east-1.amazonaws.com/dev/hello
+    # curl -X POST https://7u7jsipmfh.execute-api.us-east-1.amazonaws.com/dev/hello
     events:
       - http:
           path: /hello
-          method: get
+          method: POST
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

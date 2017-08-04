@@ -16,7 +16,7 @@ sls deploy
 sls deploy --function hello
 
 #
-# Test funciton.
+# Test function.
 #
 
 sls invoke --function hello

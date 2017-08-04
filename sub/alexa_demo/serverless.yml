@@ -4,7 +4,17 @@
 # TODO(burdon): IAM roles for deploying lambda.
 #
 
-# TODO(burdon): Figure out (and remove us-east-2)
+# https://github.com/alexa/skill-sample-nodejs-fact
+
+# TODO(burdon): Flash briefing
+
+# https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/testing-an-alexa-skill#testing-an-aws-lambda-function
+
+# TODO(burdon): Register with developer portal.
+# TODO(burdon): Set-up Alexa app for testing.
+# TODO(burdon): Register device with developer account.
+# https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/testing-an-alexa-skill#h2_register
+
 
 #
 # Console:
@@ -19,6 +29,10 @@ service: demo
 
 custom:
   webpack: "webpack.config.js"
+
+  # https://developer.amazon.com/edw/home.html#/skill/amzn1.ask.skill.720c3e80-76ae-457a-a3af-c2195894126f/en_US/info
+  alexa_app_id: "amzn1.ask.skill.720c3e80-76ae-457a-a3af-c2195894126f"
+
   dev:
     webhook: "14E2FD50-F675-4ADA-B132-CEE9950D044A"
 
@@ -39,6 +53,7 @@ provider:
   # Environment available
   #
   environment:
+    ALEXA_APP_ID: ${self:custom.alexa_app_id}
     ALIEN_WEBHOOK: ${self:custom.${self:provider.stage}.webhook}
 
 #
@@ -76,18 +91,22 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
+
   hello:
     handler: handler.hello
 
-    # TODO(burdon): Expose as API Gateway.
-    # TODO(burdon): WARNING: "Could not list api-gateway event sources."
-    # Provides endpoint.
-    # POST - https://7u7jsipmfh.execute-api.us-east-1.amazonaws.com/dev/hello
-    # curl -X POST https://7u7jsipmfh.execute-api.us-east-1.amazonaws.com/dev/hello
     events:
       - http:
-          path: /hello
-          method: POST
+          path: users/create
+          method: get
+
+  alexa:
+    handler: handler.alexa
+
+    events:
+      # https://serverless.com/framework/docs/providers/aws/events/alexa-skill/
+      # Can add via the console (Added Alexa Skills Kit source/trigger)
+      - alexaSkill
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

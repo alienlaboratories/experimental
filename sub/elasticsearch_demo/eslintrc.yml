@@ -1,0 +1,67 @@
+# http://eslint.org/docs/rules
+# > eslint file/dir
+
+extends: 'eslint:recommended'
+
+# https://www.npmjs.com/package/babel-eslint
+parser: 'babel-eslint'
+
+# http://eslint.org/docs/user-guide/configuring#specifying-environments
+env:
+  browser:          true
+  es6:              true
+  jest:             true
+  jquery:           true
+  node:             true
+  serviceworker:    true
+  worker:           true
+
+globals:
+  _: true
+
+  chrome: true
+
+  __ENV__:          true
+  __PRODUCTION__:   true
+  __DEVELOPMENT__:  true
+  __HOT__:          true
+  __TESTING__:      true
+
+# http://eslint.org/docs/user-guide/configuring#specifying-parser-options
+parserOptions:
+  sourceType: module
+
+  ecmaVersion: 6
+
+  ecmaFeatures:
+    jsx: true
+
+rules:
+  args: 0
+
+  indent:
+    - error
+    - 2
+    - SwitchCase: 1
+
+  linebreak-style:
+    - error
+    - unix
+
+  no-console:
+    - off
+
+  # Allow function args to be unused (i.e., to complete signature).
+  # http://eslint.org/docs/rules/no-unused-vars
+  no-unused-vars:
+    - error
+    - vars: all
+      args: none
+
+  quotes:
+    - error
+    - single
+
+  semi:
+    - error
+    - always

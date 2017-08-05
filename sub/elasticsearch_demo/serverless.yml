@@ -1,0 +1,65 @@
+service: elasticsearchDemo
+
+frameworkVersion: ">=1.16.0 <2.0.0"
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  dev:
+    Elasticsearch:
+      ElasticsearchClusterConfig:
+        DedicatedMasterEnabled: false
+        InstanceCount: 1
+        ZoneAwarenessEnabled: false
+        InstanceType: t2.micro.elasticsearch
+      EBSOptions:
+        EBSEnabled: true
+        VolumeType: standard
+        VolumeSize: 10
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  region: us-east-1
+  memorySize: 128
+  timeout: 10s
+  environment:
+    SLS_STAGE: ${self:custom.stage}
+    ES_DOMAIN: {Fn::GetAtt: [Elasticsearch, DomainEndpoint]}
+  iamRoleStatements:
+    - Action:
+        - es:ESHttpGet
+        - es:ESHttpPut
+        - es:ESHttpHead
+        - es:ESHttpPost
+        - es:ESHttpDelete
+      Resource:
+        Fn::Join:
+          - ""
+          -
+            - "arn:aws:es:"
+            - Ref: "AWS::Region"
+            - ":"
+            - Ref: "AWS::AccountId"
+            - ":domain/"
+            - Ref: Elasticsearch
+            - "/*"
+      Effect: Allow
+
+functions:
+  createIndex:
+    handler: indeces/create.handler
+    events:
+      - http:
+          path: /indeces
+          method: post
+
+resources:
+  Resources:
+    Elasticsearch:
+      Type: AWS::Elasticsearch::Domain
+      Properties: 
+        ElasticsearchVersion: 2.3
+        ElasticsearchClusterConfig: ${self:custom.${self:custom.stage}.Elasticsearch.ElasticsearchClusterConfig}
+        EBSOptions: ${self:custom.${self:custom.stage}.Elasticsearch.EBSOptions}
+        SnapshotOptions: 
+          AutomatedSnapshotStartHour: 0

@@ -1,0 +1,20 @@
+{
+  "name": "elasticsearch_demo",
+  "version": "0.0.1",
+  "description": "https://serverless.com/framework/docs/providers/aws/guide/quick-start/",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "repository": "https://github.com/alienlabs/experimental/tree/master/sub/serverless_database",
+  "dependencies": {
+    "elasticsearch": "^13.2.0",
+    "http-aws-es": "^2.0.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.3.0"
+  }
+}

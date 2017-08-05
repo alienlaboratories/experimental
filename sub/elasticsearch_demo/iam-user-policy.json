@@ -1,0 +1,214 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cloudformation:List*",
+        "cloudformation:Get*",
+        "cloudformation:PreviewStackUpdate"
+      ],
+      "Resource": [
+        "arn:aws:cloudformation:us-east-1:956243632840:stack/elasticsearchDemo-*/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cloudformation:CreateStack",
+        "cloudformation:CreateUploadBucket",
+        "cloudformation:DeleteStack",
+        "cloudformation:DescribeStacks",
+        "cloudformation:DescribeStackEvents",
+        "cloudformation:DescribeStackResource",
+        "cloudformation:DescribeStackResources",
+        "cloudformation:UpdateStack"
+      ],
+      "Resource": [
+        "arn:aws:cloudformation:us-east-1:956243632840:stack/elasticsearchDemo-*/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cloudformation:ValidateTemplate"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "lambda:Get*",
+        "lambda:List*",
+        "lambda:CreateFunction"
+      ],
+      "Resource": [
+        "arn:aws:lambda:us-east-1:956243632840:function:elasticsearchDemo-*-*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "lambda:DeleteFunction"
+      ],
+      "Resource": [
+        "arn:aws:lambda:us-east-1:956243632840:function:elasticsearchDemo-*-*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:CreateBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::*serverlessdeploymentbucket*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:ListBucket",
+        "s3:DeleteObject",
+        "s3:DeleteBucket",
+        "s3:ListBucketVersions"
+      ],
+      "Resource": [
+        "arn:aws:s3:::*serverlessdeploymentbucket*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "lambda:AddPermission",
+        "lambda:CreateAlias",
+        "lambda:DeleteFunction",
+        "lambda:InvokeFunction",
+        "lambda:PublishVersion",
+        "lambda:RemovePermission",
+        "lambda:Update*"
+      ],
+      "Resource": [
+        "arn:aws:lambda:us-east-1:956243632840:function:elasticsearchDemo-*-*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "apigateway:GET",
+        "apigateway:POST",
+        "apigateway:PUT",
+        "apigateway:DELETE",
+        "apigateway:PATCH"
+      ],
+      "Resource": [
+        "arn:aws:apigateway:us-east-1::/restapis*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:PassRole"
+      ],
+      "Resource": [
+        "arn:aws:iam::956243632840:role/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "kinesis:*",
+      "Resource": [
+        "arn:aws:kinesis:us-east-1:956243632840:stream/elasticsearchDemo-*-*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iam:*",
+      "Resource": [
+        "arn:aws:iam::956243632840:role/elasticsearchDemo-*-*-lambdaRole"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "sqs:*",
+      "Resource": [
+        "arn:aws:sqs:us-east-1:956243632840:elasticsearchDemo-*-*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cloudwatch:GetMetricStatistics"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:DeleteLogGroup"
+      ],
+      "Resource": [
+        "arn:aws:logs:us-east-1:956243632840:log-group:/aws/lambda/elasticsearchDemo-*-*:*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:PutLogEvents",
+        "logs:DescribeLogStreams",
+        "logs:DescribeLogGroups",
+        "logs:FilterLogEvents"
+      ],
+      "Resource": [
+        "arn:aws:logs:us-east-1:956243632840:*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "events:Put*",
+        "events:Remove*",
+        "events:Delete*"
+      ],
+      "Resource": [
+        "arn:aws:events:us-east-1:956243632840:rule/elasticsearchDemo-*-*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:DescribeTable",
+        "dynamodb:CreateTable",
+        "dynamodb:DeleteTable",
+        "dynamodb:UpdateTable"
+      ],
+      "Resource": [
+        "arn:aws:dynamodb:us-east-1:956243632840:table/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "es:CreateElasticsearchDomain",
+        "es:DescribeElasticsearchDomain",
+        "es:DescribeElasticsearchDomainConfig",
+        "es:DeleteElasticsearchDomain",
+        "es:ListDomainNames",
+        "es:AddTags",
+        "es:ListTags",
+        "es:RemoveTags",
+        "es:UpdateElasticsearchDomainConfig"
+      ],
+      "Resource": [
+        "arn:aws:es:us-east-1:956243632840:domain/*"
+      ]
+    }
+  ]
+}

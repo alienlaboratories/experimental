@@ -4,18 +4,6 @@
 # TODO(burdon): IAM roles for deploying lambda.
 #
 
-# https://github.com/alexa/skill-sample-nodejs-fact
-
-# TODO(burdon): Flash briefing
-
-# https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/testing-an-alexa-skill#testing-an-aws-lambda-function
-
-# TODO(burdon): Register with developer portal.
-# TODO(burdon): Set-up Alexa app for testing.
-# TODO(burdon): Register device with developer account.
-# https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/testing-an-alexa-skill#h2_register
-
-
 #
 # Console:
 # https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions?display=list
@@ -96,6 +84,7 @@ functions:
     handler: handler.hello
 
     events:
+      # Basic HTTP API service.
       - http:
           path: users/create
           method: get
@@ -104,7 +93,8 @@ functions:
     handler: handler.alexa
 
     events:
-      # https://serverless.com/framework/docs/providers/aws/events/alexa-skill/
+      # https://serverless.com/framework/docs/providers/aws/events/alexa-skill
+      # https://github.com/serverless/examples/tree/master/aws-node-alexa-skill
       # Can add via the console (Added Alexa Skills Kit source/trigger)
       - alexaSkill
 

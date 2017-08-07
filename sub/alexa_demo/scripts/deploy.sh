@@ -2,6 +2,8 @@
 
 AWS_PROFILE=alienlabs
 
+FUNCTION=${1:-"hello"}
+
 #
 # Build.
 #
@@ -10,16 +12,17 @@ sls webpack
 
 #
 # Calls CloudFormation.
+# https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions
 #
 
 sls deploy
-sls deploy --function hello
+sls deploy --function ${FUNCTION}
 
 #
 # Test function.
 #
 
-sls invoke --function hello
+sls invoke --function ${FUNCTION}
 
 #
 # Test API.
@@ -33,4 +36,4 @@ curl -i -X POST ${API_URL} -H "Content-Type: application/json" -d "{}"
 # Show logs (from CloudWatch).
 #
 
-sls logs --function hello --tail
+sls logs --function ${FUNCTION}

@@ -5,3 +5,7 @@ jspm_packages
 # Serverless directories
 .serverless
 .webpack
+
+# IAM credentials for serverless
+.env
+

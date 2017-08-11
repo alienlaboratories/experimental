@@ -17,6 +17,9 @@ service: demo
 
 custom:
   webpack: "webpack.config.js"
+  serverless-offline:
+    babelOptions:
+      presets: ["es2015", "stage-2"]
 
   # https://developer.amazon.com/edw/home.html#/skill/amzn1.ask.skill.720c3e80-76ae-457a-a3af-c2195894126f/en_US/info
   alexa_app_id: "amzn1.ask.skill.720c3e80-76ae-457a-a3af-c2195894126f"
@@ -25,9 +28,8 @@ custom:
     webhook: "14E2FD50-F675-4ADA-B132-CEE9950D044A"
 
 plugins:
-  # Webpack
-  # https://www.npmjs.com/package/serverless-webpack
-  - "serverless-webpack"
+  - serverless-webpack
+  - serverless-offline
 
 provider:
   name: aws

@@ -15,6 +15,9 @@ https://serverless.com/framework/docs/providers/aws/guide/quick-start
   serverless logs -f hello -t
 
   serverless remove
+
+  serverless offline
+  curl -s -v localhost:3000/users/create
 ~~~~
 
 
